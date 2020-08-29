@@ -33,7 +33,7 @@ exports.resizeImages = catchAsync(async (req, res, next) => {
       .resize(1000, 563, { fit: 'cover', position: 'top' })
       .toFormat('jpg')
       .jpeg()
-      .toFile(`public/img/listings/${filename}`);
+      .toFile(`public/images/listings/${filename}`);
 
     req.body.photos.push(filename);
   });
