@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+const path = require('path');
 const errorHandler = require('./controllers/errorController');
 const AppError = require('./utils/AppError');
 
@@ -12,6 +13,7 @@ const app = express();
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
 
 /**
  * ROUTES

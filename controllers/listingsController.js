@@ -66,3 +66,20 @@ exports.getListingById = catchAsync(async (req, res, next) => {
 
   res.status(201).json({ listing });
 });
+
+exports.searchListings = catchAsync(async (req, res, next) => {
+  console.log(req.query);
+  const { location, startDate, endDate } = req.query;
+  let guests = req.query.guests ? parseInt(req.query.guests, 10) : 0;
+  console.log(guests);
+  const listings = await Listing.find(
+    {
+      $text: { $search: location },
+      guestNumber: { $gte: guests },
+    },
+    { $score: { $meta: 'textScore' } }
+  ).sort({ $score: { $meta: 'textScore' } });
+  // console.log('listingsssssss', listings);
+
+  res.status(201).json({ listings });
+});

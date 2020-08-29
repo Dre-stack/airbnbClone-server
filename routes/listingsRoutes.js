@@ -4,10 +4,11 @@ const {
   getListingById,
   uploadImages,
   resizeImages,
+  searchListings,
 } = require('../controllers/listingsController');
 const { protectRoute } = require('../controllers/authController');
 
-router.get('/:id', getListingById);
+router.get('/getlisting/:id', getListingById);
 router.post(
   '/new',
   protectRoute,
@@ -15,5 +16,6 @@ router.post(
   resizeImages,
   createNewListing
 );
+router.get('/search', searchListings);
 
 module.exports = router;
