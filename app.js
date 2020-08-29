@@ -20,9 +20,11 @@ app.use(express.static(path.join(__dirname, 'public')));
  *
  */
 
-app.get('/api', (req, res) => res.send('welcome to airbnb server'));
-app.use('/api/users', userRoutes);
-app.use('/api/listings', listingsRoutes);
+app.get('/airbnb/api', (req, res) =>
+  res.send('welcome to airbnb server')
+);
+app.use('/airbnb/api/users', userRoutes);
+app.use('/airbnb/api/listings', listingsRoutes);
 
 /**
  * UNHANDLED ROUTE
